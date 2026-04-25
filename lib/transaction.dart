@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:flutter_projecr2/search.dart';
+import 'package:tipidbuddy/search.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -79,11 +79,13 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Transactions'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           // Search button
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               // Only show search for Daily tab (optional)
               if (_tabController.index == 0) {
@@ -101,9 +103,11 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
           // Tabs at the top
           TabBar(
             controller: _tabController,
-            unselectedLabelColor: Colors.black,
-            labelColor: Colors.blue,
-            tabs: [
+            dividerColor: Colors.transparent,
+            indicatorColor: const Color(0xFFA5B4FC),
+            unselectedLabelColor: Colors.white70,
+            labelColor: Colors.white,
+            tabs: const [
               Tab(text: "Daily"),
               Tab(text: "Calendar"),
               Tab(text: "Notes"),
@@ -115,14 +119,14 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
               _tabController.index == 1 ||
               _tabController.index == 2)
             Container(
-              color: Colors.purple[200],
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              color: const Color(0xFF151C33),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
               width: double.infinity,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Income: 0"),
-                  Text("Expenses: 0"),
+                  Text("Income: 0", style: TextStyle(color: Color(0xFF22C55E))),
+                  Text("Expenses: 0", style: TextStyle(color: Color(0xFFEF4444))),
                   Text("Total: 0"),
                 ],
               ),
@@ -134,9 +138,15 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: [
                 ListView(
-                  children: [
-                    ListTile(title: Text("Income")),
-                    ListTile(title: Text("Expenses")),
+                  children: const [
+                    ListTile(
+                      leading: Icon(Icons.arrow_downward_rounded, color: Color(0xFF22C55E)),
+                      title: Text("Income"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.arrow_upward_rounded, color: Color(0xFFEF4444)),
+                      title: Text("Expenses"),
+                    ),
                   ],
                 ),
                 TableCalendar(
@@ -149,12 +159,12 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                   children: [
                     Expanded(
                       child: _notes.isEmpty
-                          ? Center(child: Text('No notes yet'))
+                          ? const Center(child: Text('No notes yet'))
                           : ListView.builder(
                               itemCount: _notes.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
-                                  leading: Icon(Icons.note),
+                                  leading: const Icon(Icons.note),
                                   title: Text(_notes[index]),
                                 );
                               },
@@ -165,8 +175,8 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton.icon(
-                          icon: Icon(Icons.add),
-                          label: Text('Add Note'),
+                          icon: const Icon(Icons.add),
+                          label: const Text('Add Note'),
                           onPressed: _addNoteDialog,
                         ),
                       ),
@@ -186,9 +196,9 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Add Transaction Pressed");
+                    debugPrint("Add Transaction Pressed");
                   },
-                  child: Text("Add Transaction"),
+                  child: const Text("Add Transaction"),
                 ),
               ),
             ),

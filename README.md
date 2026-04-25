@@ -1,21 +1,16 @@
-<<<<<<< HEAD
-# Flutter_Project
-=======
-# flutter_projecr2
+# TipidBuddy
 
-A new Flutter project.
+A Flutter-based personal finance tracker focused on transactions, statistics, and budgeting insights.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for building and running the TipidBuddy app.
 
-A few resources to get you started if this is your first Flutter project:
+Helpful resources:
 
 - [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
 - [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> cc27445 (initial commit)
+For Flutter documentation, tutorials, and API references, visit the
+[official docs](https://docs.flutter.dev/).

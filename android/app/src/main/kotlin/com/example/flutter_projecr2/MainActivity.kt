@@ -1,4 +1,4 @@
-package com.example.flutter_projecr2
+package com.example.tipidbuddy
 
 import io.flutter.embedding.android.FlutterActivity
 
