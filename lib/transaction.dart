@@ -81,22 +81,7 @@ class _TransactionPageState extends State<TransactionPage>
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: Column(
           children: [
-            _SectionHeader(
-              title: 'Transactions',
-              subtitle: 'Manage daily entries, calendar, and notes.',
-              icon: Icons.receipt_long_outlined,
-              trailing: IconButton(
-                icon: const Icon(Icons.search),
-                onPressed: () {
-                  if (_tabController.index == 0) {
-                    showSearch(
-                      context: context,
-                      delegate: DailySearchDelegate(dailyItems: _dailyItems),
-                    );
-                  }
-                },
-              ),
-            ),
+            _buildHeader(context),
             const SizedBox(height: 8),
             TabBar(
               controller: _tabController,
@@ -199,23 +184,8 @@ class _TransactionPageState extends State<TransactionPage>
       ),
     );
   }
-}
 
-class _SectionHeader extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData icon;
-  final Widget? trailing;
-
-  const _SectionHeader({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    this.trailing,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildHeader(BuildContext context) {
     return Card(
       elevation: 0,
       color: const Color(0xFF151C33),
@@ -230,7 +200,10 @@ class _SectionHeader extends StatelessWidget {
                 color: const Color(0xFF1E2745),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: const Color(0xFFA5B4FC)),
+              child: const Icon(
+                Icons.receipt_long_outlined,
+                color: Color(0xFFA5B4FC),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -238,17 +211,30 @@ class _SectionHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    'Transactions',
                     style: Theme.of(
                       context,
                     ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
+                  Text(
+                    'Manage daily entries, calendar, and notes.',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                 ],
               ),
             ),
-            trailing ?? const SizedBox.shrink(),
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                if (_tabController.index == 0) {
+                  showSearch(
+                    context: context,
+                    delegate: DailySearchDelegate(dailyItems: _dailyItems),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

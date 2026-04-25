@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// SearchDelegate for Daily Tab
 class DailySearchDelegate extends SearchDelegate<String> {
   final List<String> dailyItems;
 
@@ -12,7 +11,7 @@ class DailySearchDelegate extends SearchDelegate<String> {
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
-          query = ''; // clear search
+          query = '';
         },
       ),
     ];
@@ -23,14 +22,13 @@ class DailySearchDelegate extends SearchDelegate<String> {
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, ''); // close search
+        close(context, '');
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // Show results when user submits search
     final results = dailyItems
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -41,7 +39,7 @@ class DailySearchDelegate extends SearchDelegate<String> {
             (item) => ListTile(
               title: Text(item),
               onTap: () {
-                close(context, item); // close and return selection
+                close(context, item);
               },
             ),
           )
@@ -51,7 +49,6 @@ class DailySearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // Show suggestions while typing
     final suggestions = dailyItems
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();

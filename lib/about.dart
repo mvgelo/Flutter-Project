@@ -9,32 +9,28 @@ class AboutPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
-          children: const [
-            _SectionHeader(
-              title: 'About',
-              subtitle: 'Help, settings, recommendations, and app credits.',
-              icon: Icons.info_outline,
-            ),
+          children: [
+            _buildHeader(context),
             SizedBox(height: 12),
-            _AboutItem(
+            const _AboutItem(
               icon: Icons.help_outline_rounded,
               title: 'Help',
               subtitle: 'Learn how to add and review your transactions.',
             ),
             SizedBox(height: 12),
-            _AboutItem(
+            const _AboutItem(
               icon: Icons.settings_suggest_outlined,
               title: 'Configuration / Settings',
               subtitle: 'Customize currency, notifications, and display options.',
             ),
             SizedBox(height: 12),
-            _AboutItem(
+            const _AboutItem(
               icon: Icons.lightbulb_outline_rounded,
               title: 'Recommendation',
               subtitle: 'Get practical tips to improve savings and budget control.',
             ),
             SizedBox(height: 12),
-            _AboutItem(
+            const _AboutItem(
               icon: Icons.workspace_premium_outlined,
               title: 'Credits',
               subtitle: 'Built by TipidBuddy Team with Flutter.',
@@ -44,21 +40,8 @@ class AboutPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class _SectionHeader extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData icon;
-
-  const _SectionHeader({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildHeader(BuildContext context) {
     return Card(
       elevation: 0,
       color: const Color(0xFF151C33),
@@ -73,7 +56,7 @@ class _SectionHeader extends StatelessWidget {
                 color: const Color(0xFF1E2745),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: const Color(0xFFA5B4FC)),
+              child: const Icon(Icons.info_outline, color: Color(0xFFA5B4FC)),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -81,13 +64,16 @@ class _SectionHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    'About',
                     style: Theme.of(
                       context,
                     ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
+                  Text(
+                    'Help, settings, recommendations, and app credits.',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                 ],
               ),
             ),
